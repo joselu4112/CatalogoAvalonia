@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="MainWindow.axaml" value="CatalogoAvalonia.csproj" />
+        <entry key="Views/PersonaView.axaml" value="CatalogoAvalonia.csproj" />
       </map>
     </option>
   </component>
