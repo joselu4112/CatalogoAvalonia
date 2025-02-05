@@ -147,7 +147,7 @@ public partial class MainVM : ObservableObject
         NombrePasivaAnadir = "";
         DescripcionPasivaAnadir = "";
         EnfriamientoPasivaAnadir = 0;
-        TipoDanioAnadirAux = "FISICO";
+        TipoDanioAnadirAux = "MAGICO";
         rutaFotoAnadir="incognita.jpg";
         this._menuAnadir.MyImage.Source = new Bitmap($"..\\..\\..\\Imagenes/{rutaFotoAnadir}");
     }
