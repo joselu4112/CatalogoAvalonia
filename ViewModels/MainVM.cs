@@ -41,8 +41,11 @@ public partial class MainVM : ObservableObject
     //Fichero
     private String fichero = "campeones0.dat";
 
-    // Enlace al menu principal para sus botones y controlar la pantalla que se muestra
+    // Ventanas para controlar cuales vamos mostrando
     private readonly MenuPrincipal _mainWindow;
+    private MenuVer _menuVer;
+    private AnadirCampeon _menuAnadir;
+    
     
     //Atributos de campeon para mostrar
     [ObservableProperty] public string _nombre;
@@ -83,9 +86,10 @@ public partial class MainVM : ObservableObject
     public void abrirVentanaVer()
     {
         // Abre la ventana de "Ver Campeones"
-        MenuVer menuVer = new MenuVer(_mainWindow);
+        MenuVer menuVer = new MenuVer();
         menuVer.Show();
         _mainWindow.Hide();
+        this._menuVer = menuVer;
     }
 
     // Ir a ventana anadir
@@ -96,8 +100,24 @@ public partial class MainVM : ObservableObject
         AnadirCampeon ventanaAñadir = new AnadirCampeon();
         ventanaAñadir.Show();
         _mainWindow.Hide();
+        this._menuAnadir = ventanaAñadir;
     }
-
+    //Para volver de las ventanas extra
+    [RelayCommand]
+    public void volverVentanaVer()
+    {
+        this._menuVer.Close();
+        this._menuVer = null;
+        this._mainWindow.Show();
+    }
+    [RelayCommand]
+    public void volverVentanaAnadir()
+    {
+        this._menuAnadir.Close();
+        this._menuAnadir = null;
+        this._mainWindow.Show();
+    }
+    
     // Eliminar el campeón actual con confirmación
     [RelayCommand]
     private void eliminarCampeon()

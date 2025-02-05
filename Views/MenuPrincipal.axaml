@@ -21,9 +21,9 @@
 
         <!-- Controles -->
         <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-            <Button Content="Ver Campeones" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding abrirVentanaVer}" />
-            <Button Content="Añadir Campeón" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding abrirVentanaAnadir}" />
-            <Button Content="Guardar Datos" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding guardarCampeones}" />
+            <Button Content="Ver Campeones" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding abrirVentanaVerCommand}" />
+            <Button Content="Añadir Campeón" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding abrirVentanaAnadirCommand}" />
+            <Button Content="Guardar Datos" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding guardarCampeonesCommand}" />
         </StackPanel>
 
     </Grid>

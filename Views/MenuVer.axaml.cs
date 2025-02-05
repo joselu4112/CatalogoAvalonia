@@ -10,9 +10,8 @@ namespace CatalogoAvalonia.Views
         private int campeonActual;
         private int totalCampeones;
 
-        public MenuVer(MenuPrincipal menu)
+        public MenuVer()
         {
-            principal = menu;
             InitializeComponent();
         }
         

@@ -25,11 +25,11 @@
         <TextBlock x:Name="label6" Text="{Binding Campeones.Count}" Grid.Row="7" Margin="10"/>
         
         <!-- Buttons to navigate through champions -->
-        <Button Content="Anterior" Command="{Binding campeonAnterior}" Grid.Row="8" Margin="10"/>
-        <Button Content="Siguiente" Command="{Binding campeonSiguiente}" Grid.Row="9" Margin="10"/>
-        <Button Content="Borrar" Command="{Binding eliminarCampeon}" Grid.Row="10" Margin="10"/>
-        <Button Content="Primero" Command="{Binding campeonPrimero}" Grid.Row="8" Margin="10"/> <!-- Navegar al primer campeón -->
-        <Button Content="Último" Command="{Binding campeonUltimo}" Grid.Row="9" Margin="10"/>  <!-- Navegar al último campeón -->
+        <Button Content="Anterior" Command="{Binding campeonAnteriorCommand}" Grid.Row="8" Margin="10"/>
+        <Button Content="Siguiente" Command="{Binding campeonSiguienteCommand}" Grid.Row="9" Margin="10"/>
+        <Button Content="Borrar" Command="{Binding eliminarCampeonCommand}" Grid.Row="10" Margin="10"/>
+        <Button Content="Primero" Command="{Binding campeonPrimeroCommand}" Grid.Row="8" Margin="10"/> 
+        <Button Content="Último" Command="{Binding campeonUltimoCommand}" Grid.Row="9" Margin="10"/>  
     </Grid>
 </Window>
 
