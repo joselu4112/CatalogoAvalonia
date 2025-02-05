@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CatalogoVista.Model
 {
-    abstract class Campeon
+    [Serializable]
+    public class Campeon
     {
         //clase abstracta para definir atributos y metodos de todos los campeones
         //nombre del campeon
@@ -43,10 +44,10 @@ namespace CatalogoVista.Model
         public HabilidadPasiva Pasiva { get; set; }
 
         
-
+        //Tipo de daño
         public TipoDeDanio TipoDanio { get;set; }
-
-        //Lo que nos dijiste de guardar una foto sin usarla, yo la limite a 100 caracteres
+        
+        //Ruta foto
         private string foto;
 
 
@@ -59,8 +60,25 @@ namespace CatalogoVista.Model
                 else foto = value;
             }
         }
+         
+        public Campeon(string nombre, int vida, int mana, TipoDeDanio tipoDanio, HabilidadPasiva pasiva, string foto)
+        {
+            this.Mana = mana;
+            this.Nombre = nombre;
+            this.Vida = vida;
+            this.TipoDanio = tipoDanio;
+            this.Foto = foto;
+            this.Pasiva = pasiva;
+        }
 
-        public abstract override string ToString();
+        public Campeon()//Constructor vacio
+        {
+        }
+        public override string ToString()
+        {
+            return $"Es un campeon: {TipoDanio}, Nombre: {Nombre}, Vida: {Vida}" +
+                   $", Mana: {Mana}, Habilidad Pasiva: {Pasiva.ToString()}, Foto: {Foto}";
+        }
 
 
     }

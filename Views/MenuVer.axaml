@@ -1,0 +1,35 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:global="clr-namespace:"
+        xmlns:vm="clr-namespace:CatalogoAvalonia.Views"
+        x:DataType="vm:MainVM"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
+        x:Class="CatalogoAvalonia.Views.MenuVer"
+        Title="Menu Principal" Width="800" Height="500">
+    
+
+    <Grid>
+        <!-- TextBoxes for displaying the champion's information -->
+        <TextBox Text="{Binding Nombre}" Grid.Row="0" Margin="10"/>
+        <TextBox Text="{Binding Vida}" Grid.Row="1" Margin="10"/>
+        <TextBox Text="{Binding Mana}" Grid.Row="2" Margin="10"/>
+        <TextBox Text="{Binding NombrePasiva}" Grid.Row="3" Margin="10"/>
+        <TextBox Text="{Binding DescripcionPasiva}" Grid.Row="4" Margin="10"/>
+        <TextBox Text="{Binding EnfriamientoPasiva}" Grid.Row="5" Margin="10"/>
+        <TextBox Text="{Binding TipoDanio}" Grid.Row="6" Margin="10"/>
+        
+        <!-- Labels for current and total champions -->
+        <TextBlock x:Name="label5" Text="{Binding CampeonActual}" Grid.Row="6" Margin="10"/>
+        <TextBlock x:Name="label6" Text="{Binding Campeones.Count}" Grid.Row="7" Margin="10"/>
+        
+        <!-- Buttons to navigate through champions -->
+        <Button Content="Anterior" Command="{Binding campeonAnterior}" Grid.Row="8" Margin="10"/>
+        <Button Content="Siguiente" Command="{Binding campeonSiguiente}" Grid.Row="9" Margin="10"/>
+        <Button Content="Borrar" Command="{Binding eliminarCampeon}" Grid.Row="10" Margin="10"/>
+        <Button Content="Primero" Command="{Binding campeonPrimero}" Grid.Row="8" Margin="10"/> <!-- Navegar al primer campeón -->
+        <Button Content="Último" Command="{Binding campeonUltimo}" Grid.Row="9" Margin="10"/>  <!-- Navegar al último campeón -->
+    </Grid>
+</Window>
+

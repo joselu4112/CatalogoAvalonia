@@ -1,0 +1,13 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CatalogoAvalonia.Views.ConfirmacionDialog"
+        Title="Confirmación" Width="300" Height="150">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+        <TextBlock Text="¿Estás seguro de que deseas eliminar este campeón?" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
+            <Button Content="Sí" Click="OnYesClicked"/>
+            <Button Content="No" Click="OnNoClicked"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
+
