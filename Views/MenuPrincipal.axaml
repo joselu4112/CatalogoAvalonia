@@ -2,18 +2,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:global="clr-namespace:"
-        xmlns:vm="clr-namespace:CatalogoAvalonia.Views"
+        xmlns:vm="clr-namespace:CatalogoAvalonia.ViewModels"
         x:DataType="vm:MainVM"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
         x:Class="CatalogoAvalonia.Views.MenuPrincipal"
         Title="Menu Principal" Width="800" Height="500"
         >
-    <Grid>
+    <Grid Name="MyGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Título o encabezado -->
@@ -21,10 +23,11 @@
 
         <!-- Controles -->
         <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-            <Button Content="Ver Campeones" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding abrirVentanaVerCommand}" />
-            <Button Content="Añadir Campeón" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding abrirVentanaAnadirCommand}" />
-            <Button Content="Guardar Datos" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding guardarCampeonesCommand}" />
+            <Button Content="Ver Campeones" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding abrirVentanaVerCommand}" IsEnabled="True"/>
+            <Button Content="Añadir Campeón" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding abrirVentanaAnadirCommand}" IsEnabled="True" />
+            <Button Content="Guardar Datos" Width="200" Height="50" HorizontalAlignment="Center" Command="{Binding guardarCampeonesCommand}" IsEnabled="True"/>
         </StackPanel>
-
+        
+        <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="MyImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="300" Stretch="Uniform" Margin="20"/>
     </Grid>
 </Window>

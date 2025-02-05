@@ -9,6 +9,7 @@ namespace CatalogoVista.Model
     [Serializable]
     public class Campeon
     {
+
         //clase abstracta para definir atributos y metodos de todos los campeones
         //nombre del campeon
         private string nombre;

@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using CatalogoAvalonia.ViewModels;
 using CatalogoAvalonia.Views;
 
 namespace CatalogoAvalonia;
@@ -16,7 +17,9 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MenuVer();
+            MenuPrincipal menup=new MenuPrincipal();
+            desktop.MainWindow = menup;
+            desktop.MainWindow.DataContext = new MainVM(menup);
         }
 
         base.OnFrameworkInitializationCompleted();

@@ -1,19 +1,22 @@
 ﻿using System;
+using System.IO;
 using Avalonia.Controls;
+using Avalonia.Media.Imaging;
+using CatalogoAvalonia.ViewModels;
 using CatalogoVista.Model;
 
-namespace CatalogoAvalonia.Views
-{
+namespace CatalogoAvalonia.Views;
+
     public partial class MenuVer : Window
     {
-        private MenuPrincipal principal;
-        private int campeonActual;
-        private int totalCampeones;
-
         public MenuVer()
         {
             InitializeComponent();
         }
-        
-    }
-}
+
+
+        }
+    
+
+    
+
