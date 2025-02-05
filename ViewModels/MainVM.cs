@@ -39,7 +39,7 @@ public partial class MainVM : ObservableObject
         }
     }
 
-    public int CampeonMostrar;
+  
     //Fichero
     private String fichero = "campeones0.dat";
 
@@ -50,24 +50,29 @@ public partial class MainVM : ObservableObject
     
     
     //Atributos de campeon para mostrar
-    [ObservableProperty] public string _nombre;
-    [ObservableProperty] public int _vida;
-    [ObservableProperty] public int _mana;
-    [ObservableProperty] public string _nombrePasiva;
-    [ObservableProperty] public string _descripcionPasiva;
-    [ObservableProperty] public double _enfriamientoPasiva;
-    [ObservableProperty] public TipoDeDanio _tipoDanio;
-    [ObservableProperty] public String rutaFoto;
+    [ObservableProperty] public int _campeonMostrar;
+    [ObservableProperty] public int _totalCampeones;
+    [ObservableProperty] private string _nombre;
+    [ObservableProperty] private int _vida;
+    [ObservableProperty] private int _mana;
+    [ObservableProperty] private string _nombrePasiva;
+    [ObservableProperty] private string _descripcionPasiva;
+    [ObservableProperty] private double _enfriamientoPasiva;
+    [ObservableProperty] private TipoDeDanio _tipoDanio;
+    [ObservableProperty] private String rutaFoto;
     
     //Atributos de campeon para añadir
-    [ObservableProperty] public string _nombreAnadir;
-    [ObservableProperty] public int _vidaAnadir;
-    [ObservableProperty] public int _manaAnadir;
-    [ObservableProperty] public string _nombrePasivaAnadir;
-    [ObservableProperty] public string _descripcionPasivaAnadir;
-    [ObservableProperty] public double _enfriamientoPasivaAnadir;
-    [ObservableProperty] public TipoDeDanio _tipoDanioAnadir;
-    [ObservableProperty] public String rutaFotoAnadir="incognita.jpg";
+    [ObservableProperty] private string _nombreAnadir;
+    [ObservableProperty] private int _vidaAnadir;
+    [ObservableProperty] private int _manaAnadir;
+    [ObservableProperty] private string _nombrePasivaAnadir;
+    [ObservableProperty] private string _descripcionPasivaAnadir;
+    [ObservableProperty] private double _enfriamientoPasivaAnadir;
+    [ObservableProperty] private TipoDeDanio _tipoDanioAnadir;
+    [ObservableProperty] private String _tipoDanioAnadirAux="MAGICO";
+    [ObservableProperty] private String rutaFotoAnadir="incognita.jpg";
+
+    private int proxIDFoto;
     
     //Constructor
     public MainVM(MenuPrincipal ventanaPrincipal)
@@ -75,15 +80,33 @@ public partial class MainVM : ObservableObject
         _mainWindow = ventanaPrincipal;
         CargarCampeones(fichero);
         CampeonActual = 0;
-        CampeonMostrar = CampeonActual + 1;
+        CampeonMostrar = CampeonActual;
         
+        string[] archivos = Directory.GetFiles("..\\..\\..\\Imagenes");
+        var numeros = archivos
+            .Select(archivo => Path.GetFileNameWithoutExtension(archivo).Trim()) // Obtener solo el nombre del archivo sin extensión y quitar espacios extra
+            .Where(nombre => int.TryParse(nombre, out _)) // Filtrar solo aquellos que son números válidos
+            .Select(nombre => int.Parse(nombre)) // Convertir el nombre a número
+            .ToList();
+        if (numeros.Count > 0)
+        {
+            // Encontrar el número mayor
+            proxIDFoto = numeros.Max()+1;
+        }
+        else
+        {
+            proxIDFoto = 0;
+        }
     }
-//Metodo para actualizar la pantalla Ver
+    //Metodo para actualizar la pantalla Ver
     public void actualizarCampos()
     {
         //Si tenemos algun campo actualiza
         if (Campeones.Count > 0)
         {
+            //Actualizar campos a mostrar si tenemos algun elemento en la lista
+            CampeonMostrar = CampeonActual + 1;
+            TotalCampeones = Campeones.Count;
             Nombre = Campeones[CampeonActual].Nombre;
             Vida = Campeones[CampeonActual].Vida;
             Mana = Campeones[CampeonActual].Mana;
@@ -115,14 +138,35 @@ public partial class MainVM : ObservableObject
         }
     }
     // Agregar un nuevo campeón
+
+    public void limpiarCamposAgregar()
+    {
+        NombreAnadir = "";
+        VidaAnadir = 0;
+        ManaAnadir = 0;
+        NombrePasivaAnadir = "";
+        DescripcionPasivaAnadir = "";
+        EnfriamientoPasivaAnadir = 0;
+        TipoDanioAnadirAux = "FISICO";
+        rutaFotoAnadir="incognita.jpg";
+        this._menuAnadir.MyImage.Source = new Bitmap($"..\\..\\..\\Imagenes/{rutaFotoAnadir}");
+    }
+    
     [RelayCommand]
     public void anadirCampeon()
     {
         // Verificar que los campos no estén vacíos antes de agregar
-        if (string.IsNullOrEmpty(NombreAnadir) || string.IsNullOrEmpty(NombrePasivaAnadir) || VidaAnadir <= 0 || ManaAnadir <= 0
-            || string.IsNullOrEmpty(DescripcionPasivaAnadir) || EnfriamientoPasivaAnadir<= 0)
+        if (string.IsNullOrEmpty(NombreAnadir) || string.IsNullOrEmpty(NombrePasivaAnadir)
+            || string.IsNullOrEmpty(DescripcionPasivaAnadir))
         {
-            // Aquí puedes agregar alguna validación o mostrar un mensaje de error
+            var errorDialog = new ErrorDialog("Por favor, rellene todos los campos.");
+            errorDialog.ShowDialog(_menuAnadir);
+            return;
+        }
+        if (VidaAnadir < 0 || ManaAnadir < 0 || EnfriamientoPasivaAnadir< 0)
+        {
+            var errorDialog = new ErrorDialog("Los campos numericos no pueden ser negativos.");
+            errorDialog.ShowDialog(_menuAnadir);
             return;
         }
         
@@ -133,6 +177,15 @@ public partial class MainVM : ObservableObject
         }
         
         // Crear un nuevo campeón con los valores de las propiedades
+
+        if (_tipoDanioAnadirAux.Equals("MAGICO"))
+        {
+            TipoDanioAnadir = TipoDeDanio.MAGICO;
+        }
+        else
+        {
+            TipoDanioAnadir = TipoDeDanio.FISICO;
+        }
         var nuevoCampeon = new Campeon
         {
             Nombre = NombreAnadir,
@@ -145,16 +198,8 @@ public partial class MainVM : ObservableObject
 
         // Agregar el nuevo campeón a la lista
         Campeones.Add(nuevoCampeon);
-
-        // Limpiar los campos después de agregar
-        Nombre = string.Empty;
-        NombrePasiva = string.Empty;
-        Vida = 0;
-        Mana = 0;
-        DescripcionPasiva = string.Empty;
-        EnfriamientoPasiva = 0;
-        TipoDanio = TipoDeDanio.FISICO;
-        RutaFoto = string.Empty;  // Limpiar la ruta de la imagen si es necesario
+        limpiarCamposAgregar();
+        guardarCampeones();
     }
     
     //Añadir foto:
@@ -170,11 +215,24 @@ public partial class MainVM : ObservableObject
         var result = await dlg.ShowAsync(ventanaPadre);
         if (result != null)
         {
-            rutaFoto = result[0];
+            rutaFotoAnadir = result[0];
+            //Cargar la foto
+            if (!Directory.Exists("..\\..\\..\\Imagenes"))
+            {
+                Directory.CreateDirectory("..\\..\\..\\Imagenes");
+            }
+            if (!rutaFotoAnadir.Equals("incognita.jpg"))
+            {
+                File.Copy(rutaFotoAnadir, $"..\\..\\..\\Imagenes/{proxIDFoto}.jpg");
+                //Aumentamos el valor del ID de la proxima foto
+                this._menuAnadir.MyImage.Source = new Bitmap($"..\\..\\..\\Imagenes/{proxIDFoto}.jpg");
+                this.proxIDFoto++;
+            }
+            
         }
         else
         {
-            rutaFoto = "Imagenes/imagenlol.jpg";
+            rutaFoto = "";
         }
     }
     
@@ -222,17 +280,22 @@ public partial class MainVM : ObservableObject
     [RelayCommand]
     private async void eliminarCampeon()
     {
-        // Mostrar el diálogo de confirmación y esperar su resultado
-        var confirmacionDialog = new ConfirmacionDialog();
-        await confirmacionDialog.ShowDialog(_menuVer); // relacionado con la ventana menuver
-
-        // Si el usuario hace clic en 'Sí' (Resultado == true), eliminamos el campeón
-        if (confirmacionDialog.Resultado)
+        if (Campeones.Count > 0)
         {
-            Campeones.RemoveAt(CampeonActual);
-            CampeonActual = Math.Max(0, CampeonActual - 1); // Ajustar si se elimina un campeón
+            // Mostrar el diálogo de confirmación y esperar su resultado
+            var confirmacionDialog = new ConfirmacionDialog();
+            await confirmacionDialog.ShowDialog(_menuVer); // relacionado con la ventana menuver
+
+            // Si el usuario hace clic en 'Sí' (Resultado == true), eliminamos el campeón
+            if (confirmacionDialog.Resultado)
+            {
+                Campeones.RemoveAt(CampeonActual);
+                CampeonActual = Math.Max(0, CampeonActual - 1); // Ajustar si se elimina un campeón
+                actualizarCampos();
+            }
+            // Si el usuario hace clic en 'No', no se hace nada
         }
-        // Si el usuario hace clic en 'No', no se hace nada
+       
     }
 
 
@@ -274,12 +337,12 @@ public partial class MainVM : ObservableObject
     }
     
     [RelayCommand]
-    public void guardarCampeones(string filePath)
+    public void guardarCampeones()
     {
         if (Campeones.Count > 0)
         {
             var json = JsonSerializer.Serialize(Campeones);
-            File.WriteAllText(filePath, json);
+            File.WriteAllText(fichero, json);
         }
         
     }

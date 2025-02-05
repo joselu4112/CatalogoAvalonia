@@ -19,5 +19,20 @@ public partial class AnadirCampeon : Window
         {
             MyImage.Source = new Bitmap(imagePath);
         }
+        
     }
+    private void TextBox_KeyDown(object sender, Avalonia.Input.KeyEventArgs e)
+    {
+        // Permitir las teclas numéricas
+        if ((e.Key >= Avalonia.Input.Key.D0 && e.Key <= Avalonia.Input.Key.D9) || 
+            (e.Key >= Avalonia.Input.Key.NumPad0 && e.Key <= Avalonia.Input.Key.NumPad9))
+        {
+            return; // Permitir los números
+        }
+
+        // Si no es una tecla permitida, manejar el evento y no permitir la tecla
+        e.Handled = true;
+
+    }
+
 }

@@ -1,0 +1,10 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CatalogoAvalonia.Views.ErrorDialog"
+        Title="Error"
+        Width="300" Height="150">
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBlock Name="MessageText" Text="Este es un mensaje de error" Margin="10"/>
+        <Button Content="Aceptar" Click="OnAcceptClick" Margin="10"/>
+    </StackPanel>
+</Window>

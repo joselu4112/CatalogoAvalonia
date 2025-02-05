@@ -36,6 +36,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/José Luis/RiderProjects/CatalogoAvalonia/Views/ConfirmacionDialog.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/José Luis/RiderProjects/CatalogoAvalonia/Views/ErrorDialog.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/José Luis/RiderProjects/CatalogoAvalonia/Views/MenuPrincipal.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

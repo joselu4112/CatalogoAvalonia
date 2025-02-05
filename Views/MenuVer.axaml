@@ -54,9 +54,9 @@
         <!-- Labels for current and total champions -->
         <StackPanel  Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
             <TextBlock x:Name="Label1" Text="Campeon" Grid.Row="6" Margin="10"/>
-            <TextBlock x:Name="Label2" Text="{Binding CampeonActual}" Grid.Row="6" Margin="10"/>
+            <TextBlock x:Name="Label2" Text="{Binding CampeonMostrar}" Grid.Row="6" Margin="10"/>
             <TextBlock x:Name="Label3" Text="De" Grid.Row="6" Margin="10"/>
-            <TextBlock x:Name="Label4" Text="{Binding Campeones.Count}" Grid.Row="7" Margin="10"/>
+            <TextBlock x:Name="Label4" Text="{Binding TotalCampeones}" Grid.Row="7" Margin="10"/>
         </StackPanel>
         
         <!-- Buttons to navigate through champions -->
