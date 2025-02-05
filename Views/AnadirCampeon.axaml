@@ -55,16 +55,15 @@
         </StackPanel>
         
         <StackPanel Grid.Row="4"  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-            <ComboBox
-                SelectedItem="{Binding TipoDanioAnadirAux}"
-                Grid.Row="6"
-                Margin="10"
-                Width="200"
-                Height="30">
-                <ComboBoxItem>MAGICO</ComboBoxItem>
-                <ComboBoxItem>FISICO</ComboBoxItem>
-            </ComboBox>
 
+            <RadioButton Content="MAGICO" 
+                         IsChecked="{Binding TipoDanioAnadirAux, Mode=OneWayToSource}" 
+                         GroupName="TipoDanio" 
+                         Tag="MAGICO"
+                         />
+            <RadioButton Content="FISICO" 
+                         GroupName="TipoDanio" 
+                         Tag="FISICO"/>
         </StackPanel>
         
         

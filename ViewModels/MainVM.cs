@@ -69,7 +69,7 @@ public partial class MainVM : ObservableObject
     [ObservableProperty] private string _descripcionPasivaAnadir;
     [ObservableProperty] private double _enfriamientoPasivaAnadir;
     [ObservableProperty] private TipoDeDanio _tipoDanioAnadir;
-    [ObservableProperty] private String _tipoDanioAnadirAux="MAGICO";
+    [ObservableProperty] private String _tipoDanioAnadirAux; //Es true si magico false si fisico
     [ObservableProperty] private String rutaFotoAnadir="incognita.jpg";
 
     private int proxIDFoto;
@@ -178,12 +178,14 @@ public partial class MainVM : ObservableObject
         
         // Crear un nuevo campeón con los valores de las propiedades
 
-        if (_tipoDanioAnadirAux.Equals("MAGICO"))
+        if (TipoDanioAnadirAux.Equals("True"))
         {
+            Console.Write(TipoDanioAnadirAux);
             TipoDanioAnadir = TipoDeDanio.MAGICO;
         }
         else
         {
+            Console.Write(TipoDanioAnadirAux);
             TipoDanioAnadir = TipoDeDanio.FISICO;
         }
         var nuevoCampeon = new Campeon

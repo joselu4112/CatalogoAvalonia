@@ -3,8 +3,16 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="App.axaml" value="CatalogoAvalonia.csproj" />
         <entry key="MainWindow.axaml" value="CatalogoAvalonia.csproj" />
+        <entry key="ViewModels/ventana1.axaml" value="CatalogoAvalonia.csproj" />
+        <entry key="Views/AnadirCampeon.axaml" value="CatalogoAvalonia.csproj" />
+        <entry key="Views/ConfirmacionDialog.axaml" value="CatalogoAvalonia.csproj" />
+        <entry key="Views/ErrorDialog.axaml" value="CatalogoAvalonia.csproj" />
+        <entry key="Views/MenuPrincipal.axaml" value="CatalogoAvalonia.csproj" />
+        <entry key="Views/MenuVer.axaml" value="CatalogoAvalonia.csproj" />
         <entry key="Views/PersonaView.axaml" value="CatalogoAvalonia.csproj" />
+        <entry key="Views/Window1.axaml" value="CatalogoAvalonia.csproj" />
       </map>
     </option>
   </component>
